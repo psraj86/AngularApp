@@ -1,1 +1,106 @@
-<h1>Student Portal</h1>
+<h1>Student Form</h1>
+<form [formGroup]="studentFormGroup" (ngSubmit)="onSubmit()">
+  <!-- first name form control-->
+
+  <div class="form-group">
+    <mat-form-field appearance="fill">
+      <mat-label>Enter First Name</mat-label>
+      <input matInput placeholder="Eneter First Name" />
+    </mat-form-field>
+  </div>
+  <!-- last name form control -->
+  <div class="form-group">
+    <mat-form-field appearance="fill">
+      <mat-label>Enter Last Name</mat-label>
+      <input
+        matInput
+        type="text"
+        formControlName="lastName"
+        placeholder="Enter Last Name"
+        class="form-control"
+      />
+    </mat-form-field>
+  </div>
+  <!-- Address form Group-->
+  <div formGroupName="address">
+    <!-- street form group -->
+    <div class="form-group">
+      <mat-form-field appearance="fill">
+        <mat-label>Enter Street</mat-label>
+        <input
+          matInput
+          placeholder="Enter Street"
+          type="text"
+          formControlName="street"
+          class="form-control"
+        />
+      </mat-form-field>
+    </div>
+    <div class="form-group">
+      <mat-form-field appearance="fill">
+        <mat-label>Enter City</mat-label>
+        <input
+          matInput
+          placeholder="Enter City"
+          type="text"
+          formControlName="street"
+          class="form-control"
+        />
+      </mat-form-field>
+    </div>
+    <div class="form-group">
+      <mat-form-field appearance="fill">
+        <mat-label>Enter State</mat-label>
+        <input
+          matInput
+          placeholder="Enter State"
+          type="text"
+          formControlName="street"
+          class="form-control"
+        />
+      </mat-form-field>
+    </div>
+    <div class="form-group">
+      <mat-form-field appearance="fill">
+        <mat-label>Enter Zip Code</mat-label>
+        <input
+          matInput
+          placeholder="Enter Zip Code"
+          type="text"
+          formControlName="street"
+          class="form-control"
+        />
+      </mat-form-field>
+    </div>
+  </div>
+  <div>
+    <div formArrayName="aliases">
+      <div *ngFor="let alias of aliases.controls; let i=index">
+        <mat-form-field appearance="fill">
+          <mat-label>Alias</mat-label>
+          <input matInput type="text" [formControlName]="i">
+
+        </mat-form-field>
+        
+      </div>
+    </div>
+  </div>
+
+  <button
+    mat-raised-button
+    color="primary"
+    type="submit"
+    [disabled]="!studentFormGroup.valid"
+  >
+    Save Data
+  </button>
+  <button
+    mat-raised-button
+    color="accent"
+    type="button"
+    on-click="addAliases()"
+  >
+    Add Aliases
+  </button>
+</form>
+<pre>{{ studentFormGroup.value | json }}</pre>
